@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/DRP14-S7-G002/api-ventuFrio/Internal/models"
+	"github.com/DRP14-S7-G002/api-ventuFrio/internal/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

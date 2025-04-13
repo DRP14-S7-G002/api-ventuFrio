@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/DRP14-S7-G002/api-ventuFrio/Internal/models"
 	"github.com/DRP14-S7-G002/api-ventuFrio/internal/db"
+	"github.com/DRP14-S7-G002/api-ventuFrio/internal/models"
 	"github.com/gin-gonic/gin"
 )
 

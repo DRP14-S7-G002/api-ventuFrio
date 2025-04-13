@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/DRP14-S7-G002/api-ventuFrio/Internal/db"
 	"github.com/DRP14-S7-G002/api-ventuFrio/cmd/routes"
+	"github.com/DRP14-S7-G002/api-ventuFrio/internal/db"
 	"github.com/gin-gonic/gin"
 )
 

@@ -33,3 +33,7 @@ services:
 networks:
   ventufrio-network:
     driver: bridge
+
+depends_on:
+  - mysql
+  - wait-for-mysql 

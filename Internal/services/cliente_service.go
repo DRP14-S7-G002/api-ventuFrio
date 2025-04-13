@@ -1,8 +1,8 @@
 package services
 
 import (
-	"github.com/DRP14-S7-G002/api-ventuFrio/Internal/models"
-	"github.com/DRP14-S7-G002/api-ventuFrio/Internal/repositories"
+	"github.com/DRP14-S7-G002/api-ventuFrio/internal/models"
+	"github.com/DRP14-S7-G002/api-ventuFrio/internal/repositories"
 )
 
 type ClienteService interface {
