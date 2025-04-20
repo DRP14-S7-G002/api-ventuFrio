@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: ventufrio-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ventufrio
+      MYSQL_USER: ventu
+      MYSQL_PASSWORD: ventu123
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ventufrio-api
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  dbdata:
