@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/DRP14-S7-G002/api-ventuFrio/internal/models"
+	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -14,6 +15,11 @@ import (
 var DB *gorm.DB
 
 func InitDB() error {
+
+	if err := godotenv.Load(); err != nil {
+		log.Println("Arquivo .env não encontrado ou não pôde ser carregado")
+	}
+
 	user := os.Getenv("DB_USER")
 	password := os.Getenv("DB_PASSWORD")
 	host := os.Getenv("DB_HOST")
