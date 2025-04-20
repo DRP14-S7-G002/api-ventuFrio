@@ -1,11 +1,12 @@
 package models
 
+import "time"
+
 type Agendamento struct {
-	ID          int    `json:"id"`
-	ClienteID   int    `json:"cliente_id"`
-	EnderecoID  int    `json:"endereco_id"`
-	Data        string `json:"data"`
-	Hora        string `json:"hora"`
-	OrcamentoID int    `json:"orcamento_id"`
-	Status      string `json:"status"`
+	ID         int       `gorm:"primaryKey" json:"id"`
+	DataVisita string    `gorm:"size:45" json:"data_visita"`
+	CreatedAt  time.Time `gorm:"autoCreateTime" json:"created_at"`
+	UpdatedAt  time.Time `gorm:"autoUpdateTime" json:"updated_at"`
+
+	Orcamentos []Orcamento `gorm:"foreignKey:AgendamentoID" json:"orcamentos"`
 }
