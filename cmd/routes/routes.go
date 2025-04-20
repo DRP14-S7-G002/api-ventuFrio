@@ -1,54 +1,67 @@
 package routes
 
 import (
-	"github.com/DRP14-S7-G002/api-ventuFrio/cmd/controller"
 	"github.com/gin-gonic/gin"
+
+	"github.com/DRP14-S7-G002/api-ventuFrio/internal/db"
+	"github.com/DRP14-S7-G002/api-ventuFrio/internal/handler"
+	"github.com/DRP14-S7-G002/api-ventuFrio/internal/repository"
+	"github.com/DRP14-S7-G002/api-ventuFrio/internal/service"
 )
 
 func RegisterRoutes(r *gin.Engine) {
+	dbInstance := db.GetDB()
 
-	clientes := r.Group("/clientes")
-	{
-		clientes.GET("", controller.GetAllClientes)
-		clientes.GET("/:id", controller.GetClienteByID)
-		clientes.POST("", controller.CreateCliente)
-		clientes.PUT("/:id", controller.UpdateCliente)
-		clientes.DELETE("/:id", controller.DeleteCliente)
-	}
+	clienteRepo := repository.NewClienteRepository(dbInstance)
+	clienteService := service.NewClienteService(clienteRepo)
+	clienteHandler := handler.NewClienteHandler(clienteService)
 
-	enderecos := r.Group("/enderecos")
-	{
-		enderecos.GET("", controller.GetAllEnderecos)
-		enderecos.GET("/:id", controller.GetEnderecoByID)
-		enderecos.POST("", controller.CreateEndereco)
-		enderecos.PUT("/:id", controller.UpdateEndereco)
-		enderecos.DELETE("/:id", controller.DeleteEndereco)
-	}
+	agendamentoRepo := repository.NewAgendamentoRepository(dbInstance)
+	agendamentoService := service.NewAgendamentoService(agendamentoRepo)
+	agendamentoHandler := handler.NewAgendamentoHandler(agendamentoService)
 
-	agendamentos := r.Group("/agendamentos")
-	{
-		agendamentos.GET("", controller.GetAllAgendamentos)
-		agendamentos.GET("/:id", controller.GetAgendamentoByID)
-		agendamentos.POST("", controller.CreateAgendamento)
-		agendamentos.PUT("/:id", controller.UpdateAgendamento)
-		agendamentos.DELETE("/:id", controller.DeleteAgendamento)
-	}
+	orcamentoRepo := repository.NewOrcamentoRepository(dbInstance)
+	orcamentoService := service.NewOrcamentoService(orcamentoRepo)
+	orcamentoHandler := handler.NewOrcamentoHandler(orcamentoService)
 
-	orcamentos := r.Group("/orcamentos")
-	{
-		orcamentos.GET("", controller.GetAllOrcamentos)
-		orcamentos.GET("/:id", controller.GetOrcamentoByID)
-		orcamentos.POST("", controller.CreateOrcamento)
-		orcamentos.PUT("/:id", controller.UpdateOrcamento)
-		orcamentos.DELETE("/:id", controller.DeleteOrcamento)
-	}
+	ordemRepo := repository.NewOrdemDeServicoRepository(dbInstance)
+	ordemService := service.NewOrdemDeServicoService(ordemRepo)
+	ordemHandler := handler.NewOrdemDeServicoHandler(ordemService)
 
-	admin := r.Group("/admin")
+	materialRepo := repository.NewMaterialRepository(dbInstance)
+	materialService := service.NewMaterialService(materialRepo)
+	materialHandler := handler.NewMaterialHandler(materialService)
+
+	v1 := r.Group("/api/v1")
 	{
-		admin.GET("", controller.GetAllAdmins)
-		admin.GET("/:id", controller.GetAdminByID)
-		admin.POST("", controller.CreateAdmin)
-		admin.PUT("/:id", controller.UpdateAdmin)
-		admin.DELETE("/:id", controller.DeleteAdmin)
+		v1.GET("/clientes", clienteHandler.GetAllClientes)
+		v1.GET("/clientes/:id", clienteHandler.GetClienteByID)
+		v1.POST("/clientes", clienteHandler.CreateCliente)
+		v1.PUT("/clientes/:id", clienteHandler.UpdateCliente)
+		v1.DELETE("/clientes/:id", clienteHandler.DeleteCliente)
+
+		v1.GET("/agendamentos", agendamentoHandler.GetAllAgendamentos)
+		v1.GET("/agendamentos/:id", agendamentoHandler.GetAgendamentoByID)
+		v1.POST("/agendamentos", agendamentoHandler.CreateAgendamento)
+		v1.PUT("/agendamentos/:id", agendamentoHandler.UpdateAgendamento)
+		v1.DELETE("/agendamentos/:id", agendamentoHandler.DeleteAgendamento)
+
+		v1.GET("/orcamentos", orcamentoHandler.GetAllOrcamentos)
+		v1.GET("/orcamentos/:id", orcamentoHandler.GetOrcamentoByID)
+		v1.POST("/orcamentos", orcamentoHandler.CreateOrcamento)
+		v1.PUT("/orcamentos/:id", orcamentoHandler.UpdateOrcamento)
+		v1.DELETE("/orcamentos/:id", orcamentoHandler.DeleteOrcamento)
+
+		v1.GET("/ordens", ordemHandler.GetAllOrdens)
+		v1.GET("/ordens/:id", ordemHandler.GetOrdemByID)
+		v1.POST("/ordens", ordemHandler.CreateOrdem)
+		v1.PUT("/ordens/:id", ordemHandler.UpdateOrdem)
+		v1.DELETE("/ordens/:id", ordemHandler.DeleteOrdem)
+
+		v1.GET("/materials", materialHandler.GetAllMateriais)
+		v1.GET("/materials/:id", materialHandler.GetMaterialByID)
+		v1.POST("/materials", materialHandler.CreateMaterial)
+		v1.PUT("/materials/:id", materialHandler.UpdateMaterial)
+		v1.DELETE("/materials/:id", materialHandler.DeleteMaterial)
 	}
 }

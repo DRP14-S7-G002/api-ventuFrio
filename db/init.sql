@@ -1,62 +1,62 @@
-CREATE DATABASE IF NOT EXISTS apiVentuFrio;
+DROP DATABASE IF EXISTS apiVentuFrio;
+CREATE DATABASE apiVentuFrio;
 USE apiVentuFrio;
 
-CREATE TABLE IF NOT EXISTS Enderecos (
+CREATE TABLE cliente (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    logradouro VARCHAR(150) NOT NULL,
-    bairro VARCHAR(100) NOT NULL,
-    numero VARCHAR(10),
-    cidade VARCHAR(100) NOT NULL,
-    estado VARCHAR(2) NOT NULL,
-    cep CHAR(9) NOT NULL
+    nome VARCHAR(150) NOT NULL,
+    sobrenome VARCHAR(150) NOT NULL,
+    telefone VARCHAR(15),
+    cpf VARCHAR(11) UNIQUE,
+    rua VARCHAR(150),
+    numero VARCHAR(45),
+    bairro VARCHAR(100),
+    cep VARCHAR(8),
+    criate_at DATE DEFAULT CURRENT_DATE,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    log_delete VARCHAR(300)
 );
 
-CREATE TABLE IF NOT EXISTS Clientes (
+CREATE TABLE agendamento (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    sobrenome VARCHAR(255) NOT NULL,
-    cpf CHAR(14) NOT NULL UNIQUE,
-    telefone VARCHAR(20) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    endereco_id INT,
-    FOREIGN KEY (endereco_id) REFERENCES Enderecos(id) ON DELETE SET NULL
+    data_visita VARCHAR(45),
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS Orcamentos (
+CREATE TABLE orcamento (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    valor_total DECIMAL(10, 2) NOT NULL,
-    prazo_entrega DATE NOT NULL,
-    admin_user_name VARCHAR(50) NOT NULL,
-    status_orcamento VARCHAR(50) NOT NULL,
-    pedido_id_orcamento INT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS Agendamentos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    descricao_inicial VARCHAR(300),
+    descricao_item VARCHAR(300),
+    status VARCHAR(45),
+    prazo_entrega DATE,
     cliente_id INT,
-    endereco_id INT,
-    data DATE NOT NULL,
-    hora TIME NOT NULL,
-    orcamento_id INT,
-    status VARCHAR(50) NOT NULL,
-    FOREIGN KEY (cliente_id) REFERENCES Clientes(id) ON DELETE CASCADE,
-    FOREIGN KEY (endereco_id) REFERENCES Enderecos(id) ON DELETE CASCADE,
-    FOREIGN KEY (orcamento_id) REFERENCES Orcamentos(id) ON DELETE SET NULL
+    Agendamento_id INT,
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deletado_log VARCHAR(300),
+    FOREIGN KEY (cliente_id) REFERENCES cliente(id),
+    FOREIGN KEY (Agendamento_id) REFERENCES agendamento(id)
 );
 
-CREATE TABLE IF NOT EXISTS Admin (
-    id VARCHAR(16) PRIMARY KEY,
-    email VARCHAR(255) NOT NULL,
-    password VARCHAR(32) NOT NULL,
-    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE ordem_servico (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descricao_servico VARCHAR(300),
+    status VARCHAR(45),
+    responsavel VARCHAR(45),
+    Orcamento_id INT,
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (Orcamento_id) REFERENCES orcamento(id)
 );
 
-
-INSERT INTO Enderecos (logradouro, bairro, numero, cidade, estado, cep) VALUES
-('Rua das Flores', 'Centro', '123', 'São Paulo', 'SP', '01001-000'),
-('Av. Brasil', 'Jardins', '456', 'Rio de Janeiro', 'RJ', '20001-000');
-
-INSERT INTO Clientes (nome, sobrenome, cpf, telefone, email, endereco_id) VALUES
-('João', 'Silva', '123.456.789-00', '11999999999', 'joao@email.com', 1),
-('Maria', 'Oliveira', '987.654.321-00', '21988888888', 'maria@email.com', 2);
+CREATE TABLE material (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(300),
+    quantidade VARCHAR(45),
+    ordem_servico_id INT,
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (ordem_servico_id) REFERENCES ordem_servico(id)
+);
 

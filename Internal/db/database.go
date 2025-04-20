@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/DRP14-S7-G002/api-ventuFrio/internal/models"
 	"gorm.io/driver/mysql"
@@ -22,24 +23,41 @@ func InitDB() error {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true",
 		user, password, host, port, dbName)
 
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	var db *gorm.DB
+	var err error
+
+	maxRetries := 10
+	for i := 0; i < maxRetries; i++ {
+		db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+		if err == nil {
+			break
+		}
+		log.Printf("Tentando conectar ao banco de dados... (%d/%d)", i+1, maxRetries)
+		time.Sleep(3 * time.Second)
+	}
+
 	if err != nil {
-		return err
+		return fmt.Errorf("falha ao conectar com o banco: %w", err)
 	}
 
 	DB = db
 
 	err = DB.AutoMigrate(
 		&models.Cliente{},
-		&models.Endereco{},
 		&models.Agendamento{},
 		&models.Orcamento{},
-		&models.Admin{},
+		&models.OrdemDeServico{},
+		&models.Material{},
 	)
 	if err != nil {
 		log.Printf("Erro ao realizar AutoMigrate: %v", err)
 		return err
 	}
 
+	log.Println("Banco conectado e migrado com sucesso.")
 	return nil
+}
+
+func GetDB() *gorm.DB {
+	return DB
 }

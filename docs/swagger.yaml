@@ -1,0 +1,959 @@
+basePath: /api/v1
+definitions:
+  models.Agendamento:
+    properties:
+      created_at:
+        type: string
+      data_visita:
+        type: string
+      id:
+        type: integer
+      orcamentos:
+        items:
+          $ref: '#/definitions/models.Orcamento'
+        type: array
+      updated_at:
+        type: string
+    type: object
+  models.Cliente:
+    properties:
+      bairro:
+        type: string
+      cep:
+        type: string
+      cpf:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      log_delete:
+        type: string
+      nome:
+        type: string
+      numero:
+        type: string
+      orcamentos:
+        items:
+          $ref: '#/definitions/models.Orcamento'
+        type: array
+      rua:
+        type: string
+      sobrenome:
+        type: string
+      telefone:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.Material:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      nome:
+        type: string
+      ordem_de_servico:
+        $ref: '#/definitions/models.OrdemDeServico'
+      ordem_de_servico_id:
+        type: integer
+      quantidade:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.Orcamento:
+    properties:
+      agendamento:
+        $ref: '#/definitions/models.Agendamento'
+      agendamento_id:
+        type: integer
+      cliente:
+        $ref: '#/definitions/models.Cliente'
+      cliente_id:
+        type: integer
+      created_at:
+        type: string
+      delete_log:
+        type: string
+      descricao_inicial:
+        type: string
+      descricao_item:
+        type: string
+      id:
+        type: integer
+      ordens_de_servico:
+        items:
+          $ref: '#/definitions/models.OrdemDeServico'
+        type: array
+      prazo_entrega:
+        type: string
+      status:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.OrdemDeServico:
+    properties:
+      created_at:
+        type: string
+      descricao_servico:
+        type: string
+      id:
+        type: integer
+      materiais:
+        items:
+          $ref: '#/definitions/models.Material'
+        type: array
+      orcamento:
+        $ref: '#/definitions/models.Orcamento'
+      orcamento_id:
+        type: integer
+      responsavel:
+        type: string
+      status:
+        type: string
+      updated_at:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: suporte@ventufrio.com
+    name: Suporte VentuFrio
+  description: API para gerenciamento de clientes, agendamentos, orçamentos e ordens
+    de serviço.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: API VentuFrio
+  version: "1.0"
+paths:
+  /agendamentos:
+    get:
+      consumes:
+      - application/json
+      description: Retorna todos os registros de agendamento
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Agendamento'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Lista todos os agendamentos
+      tags:
+      - agendamentos
+    post:
+      consumes:
+      - application/json
+      description: Cria um novo agendamento com os dados fornecidos
+      parameters:
+      - description: Dados do Agendamento
+        in: body
+        name: agendamento
+        required: true
+        schema:
+          $ref: '#/definitions/models.Agendamento'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Cria um novo agendamento
+      tags:
+      - agendamentos
+  /agendamentos/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Exclui um agendamento com base no ID fornecido
+      parameters:
+      - description: ID do Agendamento
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remove um agendamento
+      tags:
+      - agendamentos
+    get:
+      consumes:
+      - application/json
+      description: Retorna um agendamento com base no ID informado
+      parameters:
+      - description: ID do Agendamento
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Agendamento'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Busca um agendamento pelo ID
+      tags:
+      - agendamentos
+    put:
+      consumes:
+      - application/json
+      description: Atualiza os dados de um agendamento pelo ID
+      parameters:
+      - description: ID do Agendamento
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Novos dados do Agendamento
+        in: body
+        name: agendamento
+        required: true
+        schema:
+          $ref: '#/definitions/models.Agendamento'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualiza um agendamento existente
+      tags:
+      - agendamentos
+  /clientes:
+    get:
+      consumes:
+      - application/json
+      description: Retorna todos os registros de clientes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Cliente'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Lista todos os clientes
+      tags:
+      - clientes
+    post:
+      consumes:
+      - application/json
+      description: Cria um novo cliente com os dados fornecidos
+      parameters:
+      - description: Dados do Cliente
+        in: body
+        name: cliente
+        required: true
+        schema:
+          $ref: '#/definitions/models.Cliente'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Cria um novo cliente
+      tags:
+      - clientes
+  /clientes/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Exclui um cliente com base no ID fornecido
+      parameters:
+      - description: ID do Cliente
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remove um cliente
+      tags:
+      - clientes
+    get:
+      consumes:
+      - application/json
+      description: Retorna um cliente com base no ID informado
+      parameters:
+      - description: ID do Cliente
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Cliente'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Busca um cliente pelo ID
+      tags:
+      - clientes
+    put:
+      consumes:
+      - application/json
+      description: Atualiza os dados de um cliente pelo ID
+      parameters:
+      - description: ID do Cliente
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Novos dados do Cliente
+        in: body
+        name: cliente
+        required: true
+        schema:
+          $ref: '#/definitions/models.Cliente'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualiza um cliente existente
+      tags:
+      - clientes
+  /materials:
+    get:
+      consumes:
+      - application/json
+      description: Retorna todos os registros de materiais
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Material'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Lista todos os materiais
+      tags:
+      - materiais
+    post:
+      consumes:
+      - application/json
+      description: Registra um novo material com os dados fornecidos
+      parameters:
+      - description: Dados do Material
+        in: body
+        name: material
+        required: true
+        schema:
+          $ref: '#/definitions/models.Material'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Cria um novo material
+      tags:
+      - materiais
+  /materials/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Exclui um material com base no ID fornecido
+      parameters:
+      - description: ID do Material
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remove um material
+      tags:
+      - materiais
+    get:
+      consumes:
+      - application/json
+      description: Retorna um material com base no ID fornecido
+      parameters:
+      - description: ID do Material
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Material'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Busca um material pelo ID
+      tags:
+      - materiais
+    put:
+      consumes:
+      - application/json
+      description: Atualiza os dados de um material pelo ID
+      parameters:
+      - description: ID do Material
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Novos dados do Material
+        in: body
+        name: material
+        required: true
+        schema:
+          $ref: '#/definitions/models.Material'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualiza um material existente
+      tags:
+      - materiais
+  /orcamentos:
+    get:
+      consumes:
+      - application/json
+      description: Retorna todos os registros de orçamentos cadastrados
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Orcamento'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Lista todos os orçamentos
+      tags:
+      - orcamentos
+    post:
+      consumes:
+      - application/json
+      description: Registra um novo orçamento com os dados fornecidos
+      parameters:
+      - description: Dados do Orçamento
+        in: body
+        name: orcamento
+        required: true
+        schema:
+          $ref: '#/definitions/models.Orcamento'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Cria um novo orçamento
+      tags:
+      - orcamentos
+  /orcamentos/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove um orçamento com base no ID fornecido
+      parameters:
+      - description: ID do Orçamento
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Exclui um orçamento
+      tags:
+      - orcamentos
+    get:
+      consumes:
+      - application/json
+      description: Retorna os dados de um orçamento com base no ID fornecido
+      parameters:
+      - description: ID do Orçamento
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Orcamento'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Busca um orçamento pelo ID
+      tags:
+      - orcamentos
+    put:
+      consumes:
+      - application/json
+      description: Atualiza os dados de um orçamento com base no ID
+      parameters:
+      - description: ID do Orçamento
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Novos dados do Orçamento
+        in: body
+        name: orcamento
+        required: true
+        schema:
+          $ref: '#/definitions/models.Orcamento'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualiza um orçamento existente
+      tags:
+      - orcamentos
+  /ordens:
+    get:
+      consumes:
+      - application/json
+      description: Retorna todas as ordens de serviço cadastradas
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.OrdemDeServico'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Lista todas as ordens de serviço
+      tags:
+      - ordens-de-servico
+    post:
+      consumes:
+      - application/json
+      description: Registra uma nova ordem de serviço com os dados fornecidos
+      parameters:
+      - description: Dados da Ordem de Serviço
+        in: body
+        name: ordem
+        required: true
+        schema:
+          $ref: '#/definitions/models.OrdemDeServico'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Cria uma nova ordem de serviço
+      tags:
+      - ordens-de-servico
+  /ordens/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove uma ordem de serviço com base no ID fornecido
+      parameters:
+      - description: ID da Ordem de Serviço
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Exclui uma ordem de serviço
+      tags:
+      - ordens-de-servico
+    get:
+      consumes:
+      - application/json
+      description: Retorna os dados da ordem de serviço com base no ID fornecido
+      parameters:
+      - description: ID da Ordem de Serviço
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.OrdemDeServico'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Busca uma ordem de serviço pelo ID
+      tags:
+      - ordens-de-servico
+    put:
+      consumes:
+      - application/json
+      description: Atualiza os dados de uma ordem de serviço com base no ID
+      parameters:
+      - description: ID da Ordem de Serviço
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Novos dados da Ordem de Serviço
+        in: body
+        name: ordem
+        required: true
+        schema:
+          $ref: '#/definitions/models.OrdemDeServico'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Atualiza uma ordem de serviço existente
+      tags:
+      - ordens-de-servico
+swagger: "2.0"
