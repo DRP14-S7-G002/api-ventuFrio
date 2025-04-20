@@ -1,39 +1,31 @@
 version: '3.8'
 
 services:
-  mysql:
+  db:
     image: mysql:8.0
-    container_name: mysql
+    container_name: ventufrio-mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: apiVentuFrio
+      MYSQL_DATABASE: ventufrio
+      MYSQL_USER: ventu
+      MYSQL_PASSWORD: ventu123
     ports:
       - "3306:3306"
     volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - ventufrio-network
+      - dbdata:/var/lib/mysql
 
   api:
-    build: .
-    container_name: api-ventufrio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ventufrio-api
+    env_file:
+      - .env
     ports:
       - "8080:8080"
-    environment:
-      - DB_USER=root
-      - DB_PASSWORD=root
-      - DB_HOST=mysql
-      - DB_PORT=3306
-      - DB_NAME=apiVentuFrio
     depends_on:
-      - mysql
-    networks:
-      - ventufrio-network
+      - db
 
-networks:
-  ventufrio-network:
-    driver: bridge
-
-depends_on:
-  - mysql
-  - wait-for-mysql 
+volumes:
+  dbdata:
