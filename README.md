@@ -110,6 +110,7 @@ docker compose down
 ```
 
 ## 📁 Estrutura do projeto
+
 ```
 api-ventuFrio/
 │
@@ -124,6 +125,7 @@ api-ventuFrio/
 ├── Dockerfile            # Dockerfile da aplicação
 ├── docker-compose.yml    # Compose com o banco e a API
 └── README.md             # Documentação do projeto
+
 ```
 
 ## 📑 Documentação Swagger
