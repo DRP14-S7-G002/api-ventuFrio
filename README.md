@@ -79,6 +79,7 @@ https://go.dev/dl/
 ```bash
 
 #Clone o repositório
+
 git clone https://github.com/DRP14-S7-G002/api-ventuFrio.git
 
 #Acesse a pasta do projeto no terminal
@@ -126,7 +127,3 @@ api-ventuFrio/
 
 
 ## 📑 Documentação Swagger
-
-
-
-
