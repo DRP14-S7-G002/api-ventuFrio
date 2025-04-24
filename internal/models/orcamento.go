@@ -8,6 +8,7 @@ type Orcamento struct {
 	DescriçãoItem    string    `gorm:"size:300" json:"descricao_item"`
 	Status           string    `gorm:"size:45" json:"status"`
 	PrazoEntrega     time.Time `json:"prazo_entrega"`
+	Valor            string    `gorm:"size:45" json:"valor"`
 	ClienteID        int       `json:"cliente_id"`
 	AgendamentoID    int       `json:"agendamento_id"`
 	CreatedAt        time.Time `gorm:"autoCreateTime" json:"created_at"`
