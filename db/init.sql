@@ -5,7 +5,6 @@ USE apiVentuFrio;
 CREATE TABLE cliente (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(150) NOT NULL,
-    sobrenome VARCHAR(150) NOT NULL,
     telefone VARCHAR(15),
     cpf VARCHAR(11) UNIQUE,
     rua VARCHAR(150),
@@ -30,6 +29,7 @@ CREATE TABLE orcamento (
     descricao_item VARCHAR(300),
     status VARCHAR(45),
     prazo_entrega DATE,
+    valor DECIMAL(10, 2),
     cliente_id INT,
     Agendamento_id INT,
     create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -54,6 +54,7 @@ CREATE TABLE material (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(300),
     quantidade VARCHAR(45),
+    valor DECIMAL(10, 2),
     ordem_servico_id INT,
     create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

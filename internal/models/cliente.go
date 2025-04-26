@@ -5,7 +5,6 @@ import "time"
 type Cliente struct {
 	ID        int       `gorm:"primaryKey" json:"id"`
 	Nome      string    `gorm:"size:150;not null" json:"nome"`
-	Sobrenome string    `gorm:"size:150;not null" json:"sobrenome"`
 	Telefone  string    `gorm:"size:15" json:"telefone"`
 	CPF       string    `gorm:"size:11;unique" json:"cpf"`
 	Rua       string    `gorm:"size:150" json:"rua"`
