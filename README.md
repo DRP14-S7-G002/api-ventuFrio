@@ -7,13 +7,13 @@
 
 ## 📚 Índice
 
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Equipe](#equipe)
-- [Organização](#organização)
-- [Como Executar](#como-executar)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Documentação Swagger](#documentação-swagger)
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Equipe](#-equipe)
+- [Organização](#-organização)
+- [Como Executar](#%EF%B8%8F-como-executar)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Documentação Swagger](#-documentação-swagger)
 - [Endpoints da API](#endpoints-da-api)
 
 ---
