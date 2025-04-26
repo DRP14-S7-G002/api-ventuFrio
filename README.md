@@ -129,3 +129,6 @@ api-ventuFrio/
 ```
 
 ## 📑 Documentação Swagger
+![image](https://github.com/user-attachments/assets/6713f6e9-9e48-4ba0-9f54-dda3353d1161)
+
+
