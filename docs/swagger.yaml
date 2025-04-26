@@ -1,21 +1,20 @@
 basePath: /api/v1
 definitions:
-  models.Agendamento:
+  dto.AgendamentoCreateRequest:
     properties:
-      created_at:
+      data_visita:
         type: string
+    required:
+    - data_visita
+    type: object
+  dto.AgendamentoResponse:
+    properties:
       data_visita:
         type: string
       id:
         type: integer
-      orcamentos:
-        items:
-          $ref: '#/definitions/models.Orcamento'
-        type: array
-      updated_at:
-        type: string
     type: object
-  models.Cliente:
+  dto.ClienteCreateRequest:
     properties:
       bairro:
         type: string
@@ -23,98 +22,127 @@ definitions:
         type: string
       cpf:
         type: string
-      created_at:
-        type: string
-      id:
-        type: integer
-      log_delete:
-        type: string
       nome:
         type: string
       numero:
         type: string
-      orcamentos:
-        items:
-          $ref: '#/definitions/models.Orcamento'
-        type: array
       rua:
-        type: string
-      sobrenome:
         type: string
       telefone:
         type: string
-      updated_at:
-        type: string
+    required:
+    - cpf
+    - nome
     type: object
-  models.Material:
+  dto.ClienteResponse:
     properties:
-      created_at:
+      bairro:
+        type: string
+      cep:
+        type: string
+      cpf:
         type: string
       id:
         type: integer
       nome:
         type: string
-      ordem_de_servico:
-        $ref: '#/definitions/models.OrdemDeServico'
+      numero:
+        type: string
+      rua:
+        type: string
+      telefone:
+        type: string
+    type: object
+  dto.MaterialCreateRequest:
+    properties:
+      nome:
+        type: string
       ordem_de_servico_id:
         type: integer
       quantidade:
         type: string
-      updated_at:
-        type: string
+      valor:
+        type: number
+    required:
+    - nome
+    - ordem_de_servico_id
     type: object
-  models.Orcamento:
+  dto.MaterialResponse:
     properties:
-      agendamento:
-        $ref: '#/definitions/models.Agendamento'
+      id:
+        type: integer
+      nome:
+        type: string
+      ordem_de_servico_id:
+        type: integer
+      quantidade:
+        type: string
+      valor:
+        type: number
+    type: object
+  dto.OrcamentoCreateRequest:
+    properties:
       agendamento_id:
         type: integer
-      cliente:
-        $ref: '#/definitions/models.Cliente'
       cliente_id:
         type: integer
-      created_at:
+      descricao_inicial:
         type: string
-      delete_log:
+      descricao_item:
         type: string
+      prazo_entrega:
+        type: string
+      status:
+        type: string
+      valor:
+        type: number
+    required:
+    - cliente_id
+    type: object
+  dto.OrcamentoResponse:
+    properties:
+      agendamento_id:
+        type: integer
+      cliente_id:
+        type: integer
       descricao_inicial:
         type: string
       descricao_item:
         type: string
       id:
         type: integer
-      ordens_de_servico:
-        items:
-          $ref: '#/definitions/models.OrdemDeServico'
-        type: array
       prazo_entrega:
         type: string
       status:
         type: string
-      updated_at:
-        type: string
+      valor:
+        type: number
     type: object
-  models.OrdemDeServico:
+  dto.OrdemServicoCreateRequest:
     properties:
-      created_at:
-        type: string
       descricao_servico:
         type: string
-      id:
-        type: integer
-      materiais:
-        items:
-          $ref: '#/definitions/models.Material'
-        type: array
-      orcamento:
-        $ref: '#/definitions/models.Orcamento'
       orcamento_id:
         type: integer
       responsavel:
         type: string
       status:
         type: string
-      updated_at:
+    required:
+    - descricao_servico
+    - orcamento_id
+    type: object
+  dto.OrdemServicoResponse:
+    properties:
+      descricao_servico:
+        type: string
+      id:
+        type: integer
+      orcamento_id:
+        type: integer
+      responsavel:
+        type: string
+      status:
         type: string
     type: object
 host: localhost:8080
@@ -143,7 +171,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.Agendamento'
+              $ref: '#/definitions/dto.AgendamentoResponse'
             type: array
         "500":
           description: Internal Server Error
@@ -164,7 +192,7 @@ paths:
         name: agendamento
         required: true
         schema:
-          $ref: '#/definitions/models.Agendamento'
+          $ref: '#/definitions/dto.AgendamentoCreateRequest'
       produces:
       - application/json
       responses:
@@ -240,7 +268,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Agendamento'
+            $ref: '#/definitions/dto.AgendamentoResponse'
         "400":
           description: Bad Request
           schema:
@@ -271,7 +299,7 @@ paths:
         name: agendamento
         required: true
         schema:
-          $ref: '#/definitions/models.Agendamento'
+          $ref: '#/definitions/dto.AgendamentoCreateRequest'
       produces:
       - application/json
       responses:
@@ -308,7 +336,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.Cliente'
+              $ref: '#/definitions/dto.ClienteResponse'
             type: array
         "500":
           description: Internal Server Error
@@ -329,7 +357,7 @@ paths:
         name: cliente
         required: true
         schema:
-          $ref: '#/definitions/models.Cliente'
+          $ref: '#/definitions/dto.ClienteCreateRequest'
       produces:
       - application/json
       responses:
@@ -380,6 +408,12 @@ paths:
             additionalProperties:
               type: string
             type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
         "500":
           description: Internal Server Error
           schema:
@@ -405,7 +439,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Cliente'
+            $ref: '#/definitions/dto.ClienteResponse'
         "400":
           description: Bad Request
           schema:
@@ -436,7 +470,7 @@ paths:
         name: cliente
         required: true
         schema:
-          $ref: '#/definitions/models.Cliente'
+          $ref: '#/definitions/dto.ClienteCreateRequest'
       produces:
       - application/json
       responses:
@@ -448,6 +482,12 @@ paths:
             type: object
         "400":
           description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
           schema:
             additionalProperties:
               type: string
@@ -473,7 +513,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.Material'
+              $ref: '#/definitions/dto.MaterialResponse'
             type: array
         "500":
           description: Internal Server Error
@@ -494,7 +534,7 @@ paths:
         name: material
         required: true
         schema:
-          $ref: '#/definitions/models.Material'
+          $ref: '#/definitions/dto.MaterialCreateRequest'
       produces:
       - application/json
       responses:
@@ -570,7 +610,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Material'
+            $ref: '#/definitions/dto.MaterialResponse'
         "400":
           description: Bad Request
           schema:
@@ -601,7 +641,7 @@ paths:
         name: material
         required: true
         schema:
-          $ref: '#/definitions/models.Material'
+          $ref: '#/definitions/dto.MaterialCreateRequest'
       produces:
       - application/json
       responses:
@@ -638,7 +678,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.Orcamento'
+              $ref: '#/definitions/dto.OrcamentoResponse'
             type: array
         "500":
           description: Internal Server Error
@@ -659,7 +699,7 @@ paths:
         name: orcamento
         required: true
         schema:
-          $ref: '#/definitions/models.Orcamento'
+          $ref: '#/definitions/dto.OrcamentoCreateRequest'
       produces:
       - application/json
       responses:
@@ -735,7 +775,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Orcamento'
+            $ref: '#/definitions/dto.OrcamentoResponse'
         "400":
           description: Bad Request
           schema:
@@ -766,7 +806,7 @@ paths:
         name: orcamento
         required: true
         schema:
-          $ref: '#/definitions/models.Orcamento'
+          $ref: '#/definitions/dto.OrcamentoCreateRequest'
       produces:
       - application/json
       responses:
@@ -778,6 +818,12 @@ paths:
             type: object
         "400":
           description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
           schema:
             additionalProperties:
               type: string
@@ -803,7 +849,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.OrdemDeServico'
+              $ref: '#/definitions/dto.OrdemServicoResponse'
             type: array
         "500":
           description: Internal Server Error
@@ -824,7 +870,7 @@ paths:
         name: ordem
         required: true
         schema:
-          $ref: '#/definitions/models.OrdemDeServico'
+          $ref: '#/definitions/dto.OrdemServicoCreateRequest'
       produces:
       - application/json
       responses:
@@ -900,7 +946,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.OrdemDeServico'
+            $ref: '#/definitions/dto.OrdemServicoResponse'
         "400":
           description: Bad Request
           schema:
@@ -931,7 +977,7 @@ paths:
         name: ordem
         required: true
         schema:
-          $ref: '#/definitions/models.OrdemDeServico'
+          $ref: '#/definitions/dto.OrdemServicoCreateRequest'
       produces:
       - application/json
       responses:

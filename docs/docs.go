@@ -42,7 +42,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.Agendamento"
+                                "$ref": "#/definitions/dto.AgendamentoResponse"
                             }
                         }
                     },
@@ -76,7 +76,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Agendamento"
+                            "$ref": "#/definitions/dto.AgendamentoCreateRequest"
                         }
                     }
                 ],
@@ -137,7 +137,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Agendamento"
+                            "$ref": "#/definitions/dto.AgendamentoResponse"
                         }
                     },
                     "400": {
@@ -186,7 +186,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Agendamento"
+                            "$ref": "#/definitions/dto.AgendamentoCreateRequest"
                         }
                     }
                 ],
@@ -291,7 +291,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.Cliente"
+                                "$ref": "#/definitions/dto.ClienteResponse"
                             }
                         }
                     },
@@ -325,7 +325,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Cliente"
+                            "$ref": "#/definitions/dto.ClienteCreateRequest"
                         }
                     }
                 ],
@@ -386,7 +386,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Cliente"
+                            "$ref": "#/definitions/dto.ClienteResponse"
                         }
                     },
                     "400": {
@@ -435,7 +435,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Cliente"
+                            "$ref": "#/definitions/dto.ClienteCreateRequest"
                         }
                     }
                 ],
@@ -451,6 +451,15 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
                         "schema": {
                             "type": "object",
                             "additionalProperties": {
@@ -509,6 +518,15 @@ const docTemplate = `{
                             }
                         }
                     },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
@@ -540,7 +558,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.Material"
+                                "$ref": "#/definitions/dto.MaterialResponse"
                             }
                         }
                     },
@@ -574,7 +592,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Material"
+                            "$ref": "#/definitions/dto.MaterialCreateRequest"
                         }
                     }
                 ],
@@ -635,7 +653,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Material"
+                            "$ref": "#/definitions/dto.MaterialResponse"
                         }
                     },
                     "400": {
@@ -684,7 +702,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Material"
+                            "$ref": "#/definitions/dto.MaterialCreateRequest"
                         }
                     }
                 ],
@@ -789,7 +807,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.Orcamento"
+                                "$ref": "#/definitions/dto.OrcamentoResponse"
                             }
                         }
                     },
@@ -823,7 +841,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Orcamento"
+                            "$ref": "#/definitions/dto.OrcamentoCreateRequest"
                         }
                     }
                 ],
@@ -884,7 +902,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Orcamento"
+                            "$ref": "#/definitions/dto.OrcamentoResponse"
                         }
                     },
                     "400": {
@@ -933,7 +951,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Orcamento"
+                            "$ref": "#/definitions/dto.OrcamentoCreateRequest"
                         }
                     }
                 ],
@@ -949,6 +967,15 @@ const docTemplate = `{
                     },
                     "400": {
                         "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
                         "schema": {
                             "type": "object",
                             "additionalProperties": {
@@ -1038,7 +1065,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.OrdemDeServico"
+                                "$ref": "#/definitions/dto.OrdemServicoResponse"
                             }
                         }
                     },
@@ -1072,7 +1099,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.OrdemDeServico"
+                            "$ref": "#/definitions/dto.OrdemServicoCreateRequest"
                         }
                     }
                 ],
@@ -1133,7 +1160,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.OrdemDeServico"
+                            "$ref": "#/definitions/dto.OrdemServicoResponse"
                         }
                     },
                     "400": {
@@ -1182,7 +1209,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.OrdemDeServico"
+                            "$ref": "#/definitions/dto.OrdemServicoCreateRequest"
                         }
                     }
                 ],
@@ -1270,30 +1297,59 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "models.Agendamento": {
+        "dto.AgendamentoCreateRequest": {
+            "type": "object",
+            "required": [
+                "data_visita"
+            ],
+            "properties": {
+                "data_visita": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.AgendamentoResponse": {
             "type": "object",
             "properties": {
-                "created_at": {
-                    "type": "string"
-                },
                 "data_visita": {
                     "type": "string"
                 },
                 "id": {
                     "type": "integer"
+                }
+            }
+        },
+        "dto.ClienteCreateRequest": {
+            "type": "object",
+            "required": [
+                "cpf",
+                "nome"
+            ],
+            "properties": {
+                "bairro": {
+                    "type": "string"
                 },
-                "orcamentos": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Orcamento"
-                    }
+                "cep": {
+                    "type": "string"
                 },
-                "updated_at": {
+                "cpf": {
+                    "type": "string"
+                },
+                "nome": {
+                    "type": "string"
+                },
+                "numero": {
+                    "type": "string"
+                },
+                "rua": {
+                    "type": "string"
+                },
+                "telefone": {
                     "type": "string"
                 }
             }
         },
-        "models.Cliente": {
+        "dto.ClienteResponse": {
             "type": "object",
             "properties": {
                 "bairro": {
@@ -1305,14 +1361,8 @@ const docTemplate = `{
                 "cpf": {
                     "type": "string"
                 },
-                "created_at": {
-                    "type": "string"
-                },
                 "id": {
                     "type": "integer"
-                },
-                "log_delete": {
-                    "type": "string"
                 },
                 "nome": {
                     "type": "string"
@@ -1320,40 +1370,23 @@ const docTemplate = `{
                 "numero": {
                     "type": "string"
                 },
-                "orcamentos": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Orcamento"
-                    }
-                },
                 "rua": {
-                    "type": "string"
-                },
-                "sobrenome": {
                     "type": "string"
                 },
                 "telefone": {
                     "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
                 }
             }
         },
-        "models.Material": {
+        "dto.MaterialCreateRequest": {
             "type": "object",
+            "required": [
+                "nome",
+                "ordem_de_servico_id"
+            ],
             "properties": {
-                "created_at": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
                 "nome": {
                     "type": "string"
-                },
-                "ordem_de_servico": {
-                    "$ref": "#/definitions/models.OrdemDeServico"
                 },
                 "ordem_de_servico_id": {
                     "type": "integer"
@@ -1361,31 +1394,68 @@ const docTemplate = `{
                 "quantidade": {
                     "type": "string"
                 },
-                "updated_at": {
-                    "type": "string"
+                "valor": {
+                    "type": "number"
                 }
             }
         },
-        "models.Orcamento": {
+        "dto.MaterialResponse": {
             "type": "object",
             "properties": {
-                "agendamento": {
-                    "$ref": "#/definitions/models.Agendamento"
-                },
-                "agendamento_id": {
+                "id": {
                     "type": "integer"
                 },
-                "cliente": {
-                    "$ref": "#/definitions/models.Cliente"
+                "nome": {
+                    "type": "string"
+                },
+                "ordem_de_servico_id": {
+                    "type": "integer"
+                },
+                "quantidade": {
+                    "type": "string"
+                },
+                "valor": {
+                    "type": "number"
+                }
+            }
+        },
+        "dto.OrcamentoCreateRequest": {
+            "type": "object",
+            "required": [
+                "cliente_id"
+            ],
+            "properties": {
+                "agendamento_id": {
+                    "type": "integer"
                 },
                 "cliente_id": {
                     "type": "integer"
                 },
-                "created_at": {
+                "descricao_inicial": {
                     "type": "string"
                 },
-                "delete_log": {
+                "descricao_item": {
                     "type": "string"
+                },
+                "prazo_entrega": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "valor": {
+                    "type": "number"
+                }
+            }
+        },
+        "dto.OrcamentoResponse": {
+            "type": "object",
+            "properties": {
+                "agendamento_id": {
+                    "type": "integer"
+                },
+                "cliente_id": {
+                    "type": "integer"
                 },
                 "descricao_inicial": {
                     "type": "string"
@@ -1396,43 +1466,26 @@ const docTemplate = `{
                 "id": {
                     "type": "integer"
                 },
-                "ordens_de_servico": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.OrdemDeServico"
-                    }
-                },
                 "prazo_entrega": {
                     "type": "string"
                 },
                 "status": {
                     "type": "string"
                 },
-                "updated_at": {
-                    "type": "string"
+                "valor": {
+                    "type": "number"
                 }
             }
         },
-        "models.OrdemDeServico": {
+        "dto.OrdemServicoCreateRequest": {
             "type": "object",
+            "required": [
+                "descricao_servico",
+                "orcamento_id"
+            ],
             "properties": {
-                "created_at": {
-                    "type": "string"
-                },
                 "descricao_servico": {
                     "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
-                "materiais": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Material"
-                    }
-                },
-                "orcamento": {
-                    "$ref": "#/definitions/models.Orcamento"
                 },
                 "orcamento_id": {
                     "type": "integer"
@@ -1442,8 +1495,25 @@ const docTemplate = `{
                 },
                 "status": {
                     "type": "string"
+                }
+            }
+        },
+        "dto.OrdemServicoResponse": {
+            "type": "object",
+            "properties": {
+                "descricao_servico": {
+                    "type": "string"
                 },
-                "updated_at": {
+                "id": {
+                    "type": "integer"
+                },
+                "orcamento_id": {
+                    "type": "integer"
+                },
+                "responsavel": {
+                    "type": "string"
+                },
+                "status": {
                     "type": "string"
                 }
             }

@@ -4,7 +4,7 @@ import "time"
 
 type Agendamento struct {
 	ID         int       `gorm:"primaryKey" json:"id"`
-	DataVisita string    `gorm:"size:45" json:"data_visita"`
+	DataVisita time.Time `json:"data_visita"`
 	CreatedAt  time.Time `gorm:"autoCreateTime" json:"created_at"`
 	UpdatedAt  time.Time `gorm:"autoUpdateTime" json:"updated_at"`
 

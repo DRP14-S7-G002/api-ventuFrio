@@ -1,16 +1,18 @@
 // @title API VentuFrio
 // @version 1.0
-// @description API para gerenciamento de clientes, agendamentos, orçamentos e ordens de serviço.
+// @description API para gerenciamento de orçamentos, agendamentos, ordens de serviço e materiais.
 // @termsOfService http://swagger.io/terms/
 
-// @contact.name Suporte VentuFrio
+// @contact.name Suporte Técnico
 // @contact.email suporte@ventufrio.com
 
-// @license.name MIT
+// @license.name MIT License
 // @license.url https://opensource.org/licenses/MIT
 
 // @host localhost:8080
 // @BasePath /api/v1
+
+// @schemes http
 package main
 
 import (
