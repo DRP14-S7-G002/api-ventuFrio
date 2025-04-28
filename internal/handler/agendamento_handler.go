@@ -40,6 +40,7 @@ func (h *AgendamentoHandler) GetAllAgendamentos(c *gin.Context) {
 		response = append(response, dto.AgendamentoResponse{
 			ID:         agendamento.ID,
 			DataVisita: agendamento.DataVisita.Format("2006-01-02"),
+			ClienteID:  agendamento.ClienteID,
 		})
 	}
 
@@ -72,6 +73,7 @@ func (h *AgendamentoHandler) GetAgendamentoByID(c *gin.Context) {
 	response := dto.AgendamentoResponse{
 		ID:         agendamento.ID,
 		DataVisita: agendamento.DataVisita.Format("2006-01-02"),
+		ClienteID:  agendamento.ClienteID,
 	}
 
 	c.JSON(http.StatusOK, response)
@@ -102,6 +104,7 @@ func (h *AgendamentoHandler) CreateAgendamento(c *gin.Context) {
 
 	agendamento := models.Agendamento{
 		DataVisita: dataVisitaParsed,
+		ClienteID:  req.ClienteID,
 	}
 
 	if err := h.service.CreateAgendamento(agendamento); err != nil {
@@ -143,6 +146,7 @@ func (h *AgendamentoHandler) UpdateAgendamento(c *gin.Context) {
 
 	agendamento := models.Agendamento{
 		DataVisita: dataVisitaParsed,
+		ClienteID:  req.ClienteID,
 	}
 
 	if err := h.service.UpdateAgendamento(id, agendamento); err != nil {

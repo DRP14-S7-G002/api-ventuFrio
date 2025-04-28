@@ -15,5 +15,6 @@ type Cliente struct {
 	UpdatedAt time.Time `gorm:"autoUpdateTime" json:"updated_at"`
 	LogDelete string    `gorm:"size:300" json:"log_delete"`
 
-	Orcamentos []Orcamento `gorm:"foreignKey:ClienteID" json:"orcamentos"`
+	Orcamentos   []Orcamento   `gorm:"foreignKey:ClienteID" json:"orcamentos"`
+	Agendamentos []Agendamento `gorm:"foreignKey:ClienteID" json:"agendamentos"`
 }
