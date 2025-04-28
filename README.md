@@ -14,7 +14,8 @@
 - [Como Executar](#%EF%B8%8F-como-executar)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Documentação Swagger](#-documentação-swagger)
-- [Endpoints da API](#endpoints-da-api)
+- [Endpoints da API](#-endpoints-da-api)
+- [Link - Repositório Frontend](#-repositório-frontend)
 
 ---
 
@@ -89,7 +90,7 @@ cd api-ventuFrio
 go mod tidy
 
 # Configure o ambiente criando um arquivo .env na raiz do projeto
-$DB_HOST=ventufrio-mysql
+DB_HOST=ventufrio-mysql
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=root
@@ -113,22 +114,104 @@ docker compose down
 
 ```
 api-ventuFrio/
+├── cmd/
+│   └── main.go
+│   └── routes/
+│       └── routes.go
+├── db/
+│   └── init.go
 │
-├── cmd/                  # Arquivo main.go e rotas
 ├── internal/
-│   ├── db/               # Conexão com o banco de dados
-│   ├── models/           # Definições das entidades
-│   ├── handlers/         # Handlers das rotas (controllers)
-│   ├── repositories/     # Acesso ao banco de dados (camada de dados)
-│   └── services/         # Lógica de negócio
-├── docs/                 # Arquivos Swagger
-├── Dockerfile            # Dockerfile da aplicação
-├── docker-compose.yml    # Compose com o banco e a API
-└── README.md             # Documentação do projeto
+│   ├── db/
+│   │   └── database.go
+│   ├── dto/
+│   │   ├── agendamento_dto.go
+│   │   ├── cliente_dto.go
+│   │   ├── material_dto.go
+│   │   ├── orcamento_dto.go
+│   │   └── ordem_servico_dto.go
+│   ├── handler/
+│   │   ├── agendamento_handler.go
+│   │   ├── cliente_handler.go
+│   │   ├── material_handler.go
+│   │   ├── orcamento_handler.go
+│   │   └── ordem_servico_handler.go
+│   ├── models/
+│   │   ├── agendamento.go
+│   │   ├── cliente.go
+│   │   ├── material.go
+│   │   ├── orcamento.go
+│   │   ├── ordem_de_servico.go
+│   ├── repository/
+│   │   ├── agendamento_repository.go
+│   │   ├── cliente_repository.go
+│   │   ├── material_repository.go
+│   │   ├── orcamento_repository.go
+│   │   └── ordem_servico_repository.go
+│   └── service/
+│       ├── agendamento_service.go
+│       ├── cliente_service.go
+│       ├── material_service.go
+│       ├── orcamento_service.go
+│       └── ordem_servico_service.go
+│
+├── docs/
+│   ├── docs.go
+│   ├── swagger.json
+│   └── swagger.yaml
+│
+├── docker-compose.yml
+├── Dockerfile
+├── go.mod
+├── go.sum
+└── README.md
 
 ```
 
 ## 📑 Documentação Swagger
 ![image](https://github.com/user-attachments/assets/6713f6e9-9e48-4ba0-9f54-dda3353d1161)
 
+---
 
+
+## 📚 Endpoints da API
+
+
+
+| Entidade           | Método  | Rota                        | Descrição                          |
+|--------------------|---------|------------------------------|------------------------------------|
+| Cliente            | GET     | `/api/v1/clientes`           | Lista todos os clientes           |
+| Cliente            | GET     | `/api/v1/clientes/{id}`      | Busca cliente pelo ID             |
+| Cliente            | POST    | `/api/v1/clientes`           | Cria um novo cliente              |
+| Cliente            | PUT     | `/api/v1/clientes/{id}`      | Atualiza cliente pelo ID          |
+| Cliente            | DELETE  | `/api/v1/clientes/{id}`      | Deleta cliente pelo ID            |
+| Agendamento        | GET     | `/api/v1/agendamentos`       | Lista todos os agendamentos       |
+| Agendamento        | GET     | `/api/v1/agendamentos/{id}`  | Busca agendamento pelo ID         |
+| Agendamento        | POST    | `/api/v1/agendamentos`       | Cria um novo agendamento          |
+| Agendamento        | PUT     | `/api/v1/agendamentos/{id}`  | Atualiza agendamento pelo ID      |
+| Agendamento        | DELETE  | `/api/v1/agendamentos/{id}`  | Deleta agendamento pelo ID        |
+| Orçamento          | GET     | `/api/v1/orcamentos`         | Lista todos os orçamentos         |
+| Orçamento          | GET     | `/api/v1/orcamentos/{id}`    | Busca orçamento pelo ID           |
+| Orçamento          | POST    | `/api/v1/orcamentos`         | Cria um novo orçamento            |
+| Orçamento          | PUT     | `/api/v1/orcamentos/{id}`    | Atualiza orçamento pelo ID        |
+| Orçamento          | DELETE  | `/api/v1/orcamentos/{id}`    | Deleta orçamento pelo ID          |
+| Ordem de Serviço   | GET     | `/api/v1/ordens`             | Lista todas as ordens de serviço  |
+| Ordem de Serviço   | GET     | `/api/v1/ordens/{id}`        | Busca ordem de serviço pelo ID    |
+| Ordem de Serviço   | POST    | `/api/v1/ordens`             | Cria uma nova ordem de serviço    |
+| Ordem de Serviço   | PUT     | `/api/v1/ordens/{id}`        | Atualiza ordem de serviço pelo ID |
+| Ordem de Serviço   | DELETE  | `/api/v1/ordens/{id}`        | Deleta ordem de serviço pelo ID   |
+| Material           | GET     | `/api/v1/materials`          | Lista todos os materiais          |
+| Material           | GET     | `/api/v1/materials/{id}`     | Busca material pelo ID            |
+| Material           | POST    | `/api/v1/materials`          | Cria um novo material             |
+| Material           | PUT     | `/api/v1/materials/{id}`     | Atualiza material pelo ID         |
+| Material           | DELETE  | `/api/v1/materials/{id}`     | Deleta material pelo ID           |
+
+--- 
+
+## 🔗 Repositório Frontend
+
+[LINK - Projeto Webapp VentuFrio](https://github.com/DRP14-S7-G002/webapp-ventuFrio)
+
+---
+
+[Início](#-repositório-frontend)
