@@ -21,6 +21,7 @@ CREATE TABLE agendamento (
     data_visita VARCHAR(45),
     create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    cliente_id INT,
     FOREIGN KEY (cliente_id) REFERENCES cliente(id)
 );
 
