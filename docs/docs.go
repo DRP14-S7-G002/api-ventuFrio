@@ -11,11 +11,11 @@ const docTemplate = `{
         "title": "{{.Title}}",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "name": "Suporte VentuFrio",
+            "name": "Suporte Técnico",
             "email": "suporte@ventufrio.com"
         },
         "license": {
-            "name": "MIT",
+            "name": "MIT License",
             "url": "https://opensource.org/licenses/MIT"
         },
         "version": "{{.Version}}"
@@ -1300,9 +1300,13 @@ const docTemplate = `{
         "dto.AgendamentoCreateRequest": {
             "type": "object",
             "required": [
+                "cliente_id",
                 "data_visita"
             ],
             "properties": {
+                "cliente_id": {
+                    "type": "integer"
+                },
                 "data_visita": {
                     "type": "string"
                 }
@@ -1311,6 +1315,9 @@ const docTemplate = `{
         "dto.AgendamentoResponse": {
             "type": "object",
             "properties": {
+                "cliente_id": {
+                    "type": "integer"
+                },
                 "data_visita": {
                     "type": "string"
                 },
@@ -1526,9 +1533,9 @@ var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "localhost:8080",
 	BasePath:         "/api/v1",
-	Schemes:          []string{},
+	Schemes:          []string{"http"},
 	Title:            "API VentuFrio",
-	Description:      "API para gerenciamento de clientes, agendamentos, orçamentos e ordens de serviço.",
+	Description:      "API para gerenciamento de orçamentos, agendamentos, ordens de serviço e materiais.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",
