@@ -1,15 +1,18 @@
 {
+    "schemes": [
+        "http"
+    ],
     "swagger": "2.0",
     "info": {
-        "description": "API para gerenciamento de clientes, agendamentos, orçamentos e ordens de serviço.",
+        "description": "API para gerenciamento de orçamentos, agendamentos, ordens de serviço e materiais.",
         "title": "API VentuFrio",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "name": "Suporte VentuFrio",
+            "name": "Suporte Técnico",
             "email": "suporte@ventufrio.com"
         },
         "license": {
-            "name": "MIT",
+            "name": "MIT License",
             "url": "https://opensource.org/licenses/MIT"
         },
         "version": "1.0"
@@ -1294,9 +1297,13 @@
         "dto.AgendamentoCreateRequest": {
             "type": "object",
             "required": [
+                "cliente_id",
                 "data_visita"
             ],
             "properties": {
+                "cliente_id": {
+                    "type": "integer"
+                },
                 "data_visita": {
                     "type": "string"
                 }
@@ -1305,6 +1312,9 @@
         "dto.AgendamentoResponse": {
             "type": "object",
             "properties": {
+                "cliente_id": {
+                    "type": "integer"
+                },
                 "data_visita": {
                     "type": "string"
                 },

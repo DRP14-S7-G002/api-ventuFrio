@@ -2,13 +2,18 @@ basePath: /api/v1
 definitions:
   dto.AgendamentoCreateRequest:
     properties:
+      cliente_id:
+        type: integer
       data_visita:
         type: string
     required:
+    - cliente_id
     - data_visita
     type: object
   dto.AgendamentoResponse:
     properties:
+      cliente_id:
+        type: integer
       data_visita:
         type: string
       id:
@@ -149,11 +154,11 @@ host: localhost:8080
 info:
   contact:
     email: suporte@ventufrio.com
-    name: Suporte VentuFrio
-  description: API para gerenciamento de clientes, agendamentos, orçamentos e ordens
-    de serviço.
+    name: Suporte Técnico
+  description: API para gerenciamento de orçamentos, agendamentos, ordens de serviço
+    e materiais.
   license:
-    name: MIT
+    name: MIT License
     url: https://opensource.org/licenses/MIT
   termsOfService: http://swagger.io/terms/
   title: API VentuFrio
@@ -1002,4 +1007,6 @@ paths:
       summary: Atualiza uma ordem de serviço existente
       tags:
       - ordens-de-servico
+schemes:
+- http
 swagger: "2.0"
