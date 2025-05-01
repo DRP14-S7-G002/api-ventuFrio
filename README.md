@@ -214,4 +214,10 @@ api-ventuFrio/
 
 ---
 
+## 🔗 Protótipo
+
+[LINK - Protótipo](https://www.figma.com/design/1a5X22NvuV6VODQ6GDCKnC/Projeto-Integrador?node-id=0-1&p=f&t=HMP40m3aAZw9vZtR-0)
+
+---
+
 [Início](#-projeto-integrador---api-ventufrio)
