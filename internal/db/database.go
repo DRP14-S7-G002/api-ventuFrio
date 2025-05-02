@@ -6,7 +6,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/DRP14-S7-G002/api-ventuFrio/internal/models"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -48,17 +47,10 @@ func InitDB() error {
 
 	DB = db
 
-	err = DB.AutoMigrate(
-		&models.Cliente{},
-		&models.Agendamento{},
-		&models.Orcamento{},
-		&models.OrdemDeServico{},
-		&models.Material{},
-	)
-	if err != nil {
-		log.Printf("Erro ao realizar AutoMigrate: %v", err)
-		return err
-	}
+	// if err != nil {
+	// 	log.Printf("Erro ao realizar AutoMigrate: %v", err)
+	// 	return err
+	// }
 
 	log.Println("Banco conectado e migrado com sucesso.")
 	return nil

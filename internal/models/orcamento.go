@@ -19,3 +19,7 @@ type Orcamento struct {
 	Agendamento     Agendamento      `gorm:"foreignKey:AgendamentoID" json:"agendamento"`
 	OrdensDeServico []OrdemDeServico `gorm:"foreignKey:OrcamentoID" json:"ordens_de_servico"`
 }
+
+func (Orcamento) TableName() string {
+	return "orcamento"
+}

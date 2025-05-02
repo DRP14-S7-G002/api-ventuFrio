@@ -536,7 +536,7 @@
                 }
             }
         },
-        "/materials": {
+        "/materiais": {
             "get": {
                 "description": "Retorna todos os registros de materiais",
                 "consumes": [
@@ -624,7 +624,7 @@
                 }
             }
         },
-        "/materials/{id}": {
+        "/materiais/{id}": {
             "get": {
                 "description": "Retorna um material com base no ID fornecido",
                 "consumes": [

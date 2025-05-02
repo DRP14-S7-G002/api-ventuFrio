@@ -539,7 +539,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/materials": {
+        "/materiais": {
             "get": {
                 "description": "Retorna todos os registros de materiais",
                 "consumes": [
@@ -627,7 +627,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/materials/{id}": {
+        "/materiais/{id}": {
             "get": {
                 "description": "Retorna um material com base no ID fornecido",
                 "consumes": [

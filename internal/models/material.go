@@ -13,3 +13,7 @@ type Material struct {
 
 	OrdemDeServico OrdemDeServico `gorm:"foreignKey:OrdemDeServicoID" json:"ordem_de_servico"`
 }
+
+func (Material) TableName() string {
+	return "material"
+}

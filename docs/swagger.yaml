@@ -506,7 +506,7 @@ paths:
       summary: Atualiza um cliente existente
       tags:
       - clientes
-  /materials:
+  /materiais:
     get:
       consumes:
       - application/json
@@ -564,7 +564,7 @@ paths:
       summary: Cria um novo material
       tags:
       - materiais
-  /materials/{id}:
+  /materiais/{id}:
     delete:
       consumes:
       - application/json

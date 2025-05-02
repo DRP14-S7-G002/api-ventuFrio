@@ -3,7 +3,6 @@ package handler
 import (
 	"net/http"
 	"strconv"
-	"time"
 
 	"github.com/DRP14-S7-G002/api-ventuFrio/internal/dto"
 	"github.com/DRP14-S7-G002/api-ventuFrio/internal/models"
@@ -39,7 +38,7 @@ func (h *AgendamentoHandler) GetAllAgendamentos(c *gin.Context) {
 	for _, agendamento := range agendamentos {
 		response = append(response, dto.AgendamentoResponse{
 			ID:         agendamento.ID,
-			DataVisita: agendamento.DataVisita.Format("2006-01-02"),
+			DataVisita: agendamento.DataVisita,
 			ClienteID:  agendamento.ClienteID,
 		})
 	}
@@ -72,7 +71,7 @@ func (h *AgendamentoHandler) GetAgendamentoByID(c *gin.Context) {
 
 	response := dto.AgendamentoResponse{
 		ID:         agendamento.ID,
-		DataVisita: agendamento.DataVisita.Format("2006-01-02"),
+		DataVisita: agendamento.DataVisita,
 		ClienteID:  agendamento.ClienteID,
 	}
 
@@ -96,14 +95,8 @@ func (h *AgendamentoHandler) CreateAgendamento(c *gin.Context) {
 		return
 	}
 
-	dataVisitaParsed, err := time.Parse("2006-01-02", req.DataVisita)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Data inválida. Formato esperado: YYYY-MM-DD"})
-		return
-	}
-
 	agendamento := models.Agendamento{
-		DataVisita: dataVisitaParsed,
+		DataVisita: req.DataVisita,
 		ClienteID:  req.ClienteID,
 	}
 
@@ -138,14 +131,8 @@ func (h *AgendamentoHandler) UpdateAgendamento(c *gin.Context) {
 		return
 	}
 
-	dataVisitaParsed, err := time.Parse("2006-01-02", req.DataVisita)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Data inválida. Formato esperado: YYYY-MM-DD"})
-		return
-	}
-
 	agendamento := models.Agendamento{
-		DataVisita: dataVisitaParsed,
+		DataVisita: req.DataVisita,
 		ClienteID:  req.ClienteID,
 	}
 

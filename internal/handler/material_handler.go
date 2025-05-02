@@ -26,7 +26,7 @@ func NewMaterialHandler(s service.MaterialService) *MaterialHandler {
 // @Produce json
 // @Success 200 {array} dto.MaterialResponse
 // @Failure 500 {object} map[string]string
-// @Router /materials [get]
+// @Router /materiais [get]
 func (h *MaterialHandler) GetAllMateriais(c *gin.Context) {
 	materiais, err := h.service.GetAllMateriais()
 	if err != nil {
@@ -57,7 +57,7 @@ func (h *MaterialHandler) GetAllMateriais(c *gin.Context) {
 // @Param id path int true "ID do Material"
 // @Success 200 {object} dto.MaterialResponse
 // @Failure 400,404 {object} map[string]string
-// @Router /materials/{id} [get]
+// @Router /materiais/{id} [get]
 func (h *MaterialHandler) GetMaterialByID(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -91,7 +91,7 @@ func (h *MaterialHandler) GetMaterialByID(c *gin.Context) {
 // @Param material body dto.MaterialCreateRequest true "Dados do Material"
 // @Success 201 {object} map[string]string
 // @Failure 400,500 {object} map[string]string
-// @Router /materials [post]
+// @Router /materiais [post]
 func (h *MaterialHandler) CreateMaterial(c *gin.Context) {
 	var req dto.MaterialCreateRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -123,7 +123,7 @@ func (h *MaterialHandler) CreateMaterial(c *gin.Context) {
 // @Param material body dto.MaterialCreateRequest true "Novos dados do Material"
 // @Success 200 {object} map[string]string
 // @Failure 400,500 {object} map[string]string
-// @Router /materials/{id} [put]
+// @Router /materiais/{id} [put]
 func (h *MaterialHandler) UpdateMaterial(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -160,7 +160,7 @@ func (h *MaterialHandler) UpdateMaterial(c *gin.Context) {
 // @Param id path int true "ID do Material"
 // @Success 200 {object} map[string]string
 // @Failure 400,500 {object} map[string]string
-// @Router /materials/{id} [delete]
+// @Router /materiais/{id} [delete]
 func (h *MaterialHandler) DeleteMaterial(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {

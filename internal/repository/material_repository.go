@@ -23,7 +23,7 @@ func NewMaterialRepository(db *gorm.DB) MaterialRepository {
 
 func (r *materialRepo) GetAll() ([]models.Material, error) {
 	var materiais []models.Material
-	err := r.db.Preload("WorkOrdem").Find(&materiais).Error
+	err := r.db.Preload("OrdemDeServico").Find(&materiais).Error
 	return materiais, err
 }
 

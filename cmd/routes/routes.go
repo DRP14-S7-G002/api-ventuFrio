@@ -58,10 +58,10 @@ func RegisterRoutes(r *gin.Engine) {
 		v1.PUT("/ordens/:id", ordemHandler.UpdateOrdem)
 		v1.DELETE("/ordens/:id", ordemHandler.DeleteOrdem)
 
-		v1.GET("/materials", materialHandler.GetAllMateriais)
-		v1.GET("/materials/:id", materialHandler.GetMaterialByID)
-		v1.POST("/materials", materialHandler.CreateMaterial)
-		v1.PUT("/materials/:id", materialHandler.UpdateMaterial)
-		v1.DELETE("/materials/:id", materialHandler.DeleteMaterial)
+		v1.GET("/materiais", materialHandler.GetAllMateriais)
+		v1.GET("/materiais/:id", materialHandler.GetMaterialByID)
+		v1.POST("/materiais", materialHandler.CreateMaterial)
+		v1.PUT("/materiais/:id", materialHandler.UpdateMaterial)
+		v1.DELETE("/materiais/:id", materialHandler.DeleteMaterial)
 	}
 }

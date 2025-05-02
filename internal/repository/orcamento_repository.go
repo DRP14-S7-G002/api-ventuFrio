@@ -23,7 +23,7 @@ func NewOrcamentoRepository(db *gorm.DB) OrcamentoRepository {
 
 func (r *orcamentoRepo) GetAll() ([]models.Orcamento, error) {
 	var orcamentos []models.Orcamento
-	err := r.db.Preload("Client").Preload("Schedule").Find(&orcamentos).Error
+	err := r.db.Preload("Cliente").Preload("Agendamento").Find(&orcamentos).Error
 	return orcamentos, err
 }
 

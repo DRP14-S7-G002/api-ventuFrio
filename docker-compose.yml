@@ -7,13 +7,12 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ventufrio
-      MYSQL_USER: ventu
-      MYSQL_PASSWORD: ventu123
+      MYSQL_DATABASE: apiVentuFrio
     ports:
       - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
 
   api:
     build:

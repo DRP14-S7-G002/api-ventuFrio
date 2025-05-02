@@ -14,3 +14,7 @@ type OrdemDeServico struct {
 	Orcamento Orcamento  `gorm:"foreignKey:OrcamentoID" json:"orcamento"`
 	Materiais []Material `gorm:"foreignKey:OrdemDeServicoID" json:"materiais"`
 }
+
+func (OrdemDeServico) TableName() string {
+	return "ordem_servico"
+}

@@ -23,7 +23,7 @@ func NewOrdemDeServicoRepository(db *gorm.DB) OrdemDeServicoRepository {
 
 func (r *ordemDeServicoRepo) GetAll() ([]models.OrdemDeServico, error) {
 	var ordens []models.OrdemDeServico
-	err := r.db.Preload("Budget").Find(&ordens).Error
+	err := r.db.Preload("Orcamento").Find(&ordens).Error
 	return ordens, err
 }
 

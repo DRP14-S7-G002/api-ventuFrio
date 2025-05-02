@@ -94,7 +94,7 @@ DB_HOST=ventufrio-mysql
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=root
-DB_NAME=ventufrio
+DB_NAME=apiVentuFrio
 
 #Subir o projeto com Docker
 docker compose up --build
@@ -200,11 +200,11 @@ api-ventuFrio/
 | Ordem de Serviço   | POST    | `/api/v1/ordens`             | Cria uma nova ordem de serviço    |
 | Ordem de Serviço   | PUT     | `/api/v1/ordens/{id}`        | Atualiza ordem de serviço pelo ID |
 | Ordem de Serviço   | DELETE  | `/api/v1/ordens/{id}`        | Deleta ordem de serviço pelo ID   |
-| Material           | GET     | `/api/v1/materials`          | Lista todos os materiais          |
-| Material           | GET     | `/api/v1/materials/{id}`     | Busca material pelo ID            |
-| Material           | POST    | `/api/v1/materials`          | Cria um novo material             |
-| Material           | PUT     | `/api/v1/materials/{id}`     | Atualiza material pelo ID         |
-| Material           | DELETE  | `/api/v1/materials/{id}`     | Deleta material pelo ID           |
+| Material           | GET     | `/api/v1/materiais`          | Lista todos os materiais          |
+| Material           | GET     | `/api/v1/materiais/{id}`     | Busca material pelo ID            |
+| Material           | POST    | `/api/v1/materiais`          | Cria um novo material             |
+| Material           | PUT     | `/api/v1/materiais/{id}`     | Atualiza material pelo ID         |
+| Material           | DELETE  | `/api/v1/materiais/{id}`     | Deleta material pelo ID           |
 
 --- 
 

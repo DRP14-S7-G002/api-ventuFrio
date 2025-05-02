@@ -11,14 +11,14 @@ CREATE TABLE cliente (
     numero VARCHAR(45),
     bairro VARCHAR(100),
     cep VARCHAR(8),
-    criate_at DATE DEFAULT CURRENT_DATE,
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     log_delete VARCHAR(300)
 );
 
 CREATE TABLE agendamento (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    data_visita VARCHAR(45),
+    data_visita DATE,
     create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     cliente_id INT,
@@ -87,15 +87,15 @@ VALUES ('Igor Nascimento', '1199999108', '1234567898', 'Avenida Ipiranga', '90',
 INSERT INTO cliente (nome, telefone, cpf, rua, numero, bairro, cep) 
 VALUES ('Juliana Lima', '1199999109', '1234567899', 'Rua Vergueiro', '100', 'Aclimação', '01234109');
 INSERT INTO cliente (nome, telefone, cpf, rua, numero, bairro, cep) 
-VALUES ('Kleber Araújo', '1199999110', '1234567890', 'Rua Domingos de Morais', '110', 'Tatuapé', '01234110');
+VALUES ('Kleber Araújo', '1199999110', '9834567890', 'Rua Domingos de Morais', '110', 'Tatuapé', '01234110');
 INSERT INTO cliente (nome, telefone, cpf, rua, numero, bairro, cep) 
-VALUES ('Larissa Fernandes', '1199999111', '1234567891', 'Rua Teodoro Sampaio', '120', 'Brooklin', '01234111');
+VALUES ('Larissa Fernandes', '1199999111', '8794567891', 'Rua Teodoro Sampaio', '120', 'Brooklin', '01234111');
 INSERT INTO cliente (nome, telefone, cpf, rua, numero, bairro, cep) 
-VALUES ('Marcos Carvalho', '1199999112', '1234567892', 'Rua Pamplona', '130', 'Perdizes', '01234112');
+VALUES ('Marcos Carvalho', '1199999112', '6544567892', 'Rua Pamplona', '130', 'Perdizes', '01234112');
 INSERT INTO cliente (nome, telefone, cpf, rua, numero, bairro, cep) 
-VALUES ('Natália Gomes', '1199999113', '1234567893', 'Rua Itacolomi', '140', 'Lapa', '01234113');
+VALUES ('Natália Gomes', '1199999113', '4567567893', 'Rua Itacolomi', '140', 'Lapa', '01234113');
 INSERT INTO cliente (nome, telefone, cpf, rua, numero, bairro, cep) 
-VALUES ('Otávio Martins', '1199999114', '1234567894', 'Avenida Angélica', '150', 'Cambuci', '01234114');
+VALUES ('Otávio Martins', '1199999114', '9634567894', 'Avenida Angélica', '150', 'Cambuci', '01234114');
 
 -- inclusão de dados de exemplo na tabela agendamento
 

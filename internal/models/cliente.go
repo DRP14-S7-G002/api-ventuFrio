@@ -18,3 +18,7 @@ type Cliente struct {
 	Orcamentos   []Orcamento   `gorm:"foreignKey:ClienteID" json:"orcamentos"`
 	Agendamentos []Agendamento `gorm:"foreignKey:ClienteID" json:"agendamentos"`
 }
+
+func (Cliente) TableName() string {
+	return "cliente"
+}
