@@ -48,7 +48,10 @@ Projeto desenvolvido como parte do curso da **UNIVESP - Universidade Virtual do 
 - Guilherme Fontainha Machado
 - Ítalo Oliveira Almeida
 - João Vitor Alves Ribeiro
-- José Lucas Silva Rodrigues
+- José Lucas Silva Reis
+- Luiz Henrique Gomes Santos
+- Rafael Peixoto de Carvalho
+
 
 ---
 
