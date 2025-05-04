@@ -124,46 +124,18 @@ api-ventuFrio/
 │       └── routes.go
 ├── db/
 │   └── init.go
-│
 ├── internal/
 │   ├── db/
 │   │   └── database.go
 │   ├── dto/
-│   │   ├── agendamento_dto.go
-│   │   ├── cliente_dto.go
-│   │   ├── material_dto.go
-│   │   ├── orcamento_dto.go
-│   │   └── ordem_servico_dto.go
 │   ├── handler/
-│   │   ├── agendamento_handler.go
-│   │   ├── cliente_handler.go
-│   │   ├── material_handler.go
-│   │   ├── orcamento_handler.go
-│   │   └── ordem_servico_handler.go
 │   ├── models/
-│   │   ├── agendamento.go
-│   │   ├── cliente.go
-│   │   ├── material.go
-│   │   ├── orcamento.go
-│   │   ├── ordem_de_servico.go
 │   ├── repository/
-│   │   ├── agendamento_repository.go
-│   │   ├── cliente_repository.go
-│   │   ├── material_repository.go
-│   │   ├── orcamento_repository.go
-│   │   └── ordem_servico_repository.go
 │   └── service/
-│       ├── agendamento_service.go
-│       ├── cliente_service.go
-│       ├── material_service.go
-│       ├── orcamento_service.go
-│       └── ordem_servico_service.go
-│
 ├── docs/
 │   ├── docs.go
 │   ├── swagger.json
 │   └── swagger.yaml
-│
 ├── docker-compose.yml
 ├── Dockerfile
 ├── go.mod
