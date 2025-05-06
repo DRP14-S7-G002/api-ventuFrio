@@ -13,7 +13,6 @@ type Orcamento struct {
 	AgendamentoID    int       `json:"agendamento_id"`
 	CreatedAt        time.Time `gorm:"autoCreateTime" json:"created_at"`
 	UpdatedAt        time.Time `gorm:"autoUpdateTime" json:"updated_at"`
-	DeleteLog        string    `gorm:"size:300" json:"delete_log"`
 
 	Cliente         Cliente          `gorm:"foreignKey:ClienteID" json:"cliente"`
 	Agendamento     Agendamento      `gorm:"foreignKey:AgendamentoID" json:"agendamento"`

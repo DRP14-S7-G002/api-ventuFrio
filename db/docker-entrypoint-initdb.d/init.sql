@@ -11,19 +11,19 @@ CREATE TABLE cliente (
     numero VARCHAR(45),
     bairro VARCHAR(100),
     cep VARCHAR(8),
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     log_delete VARCHAR(300)
 );
 
 CREATE TABLE agendamento (
     id INT AUTO_INCREMENT PRIMARY KEY,
     data_visita DATE,
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     cliente_id INT,
-    FOREIGN KEY (cliente_id) REFERENCES cliente(id)
-);
+    FOREIGN KEY (cliente_id) REFERENCES cliente(id) ON DELETE CASCADE
+    );
 
 CREATE TABLE orcamento (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,11 +34,10 @@ CREATE TABLE orcamento (
     valor DECIMAL(10, 2),
     cliente_id INT,
     Agendamento_id INT,
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deletado_log VARCHAR(300),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (cliente_id) REFERENCES cliente(id),
-    FOREIGN KEY (Agendamento_id) REFERENCES agendamento(id)
+    FOREIGN KEY (Agendamento_id) REFERENCES agendamento(id) ON DELETE CASCADE
 );
 
 CREATE TABLE ordem_servico (
@@ -47,9 +46,9 @@ CREATE TABLE ordem_servico (
     status VARCHAR(45),
     responsavel VARCHAR(45),
     Orcamento_id INT,
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (Orcamento_id) REFERENCES orcamento(id)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (Orcamento_id) REFERENCES orcamento(id) ON DELETE CASCADE
 );
 
 CREATE TABLE material (
@@ -57,10 +56,10 @@ CREATE TABLE material (
     nome VARCHAR(300),
     quantidade VARCHAR(45),
     valor DECIMAL(10, 2),
-    ordem_servico_id INT,
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (ordem_servico_id) REFERENCES ordem_servico(id)
+    ordem_de_servico_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (ordem_de_servico_id) REFERENCES ordem_servico(id) ON DELETE CASCADE
 );
 
 
@@ -146,7 +145,7 @@ VALUES ('Troca do motor da Geladeira', 'Finalizado', 'Wagner Ventura Gomes Macha
 
 -- inclusão de dados de exemplo na tabela material
 
-INSERT INTO material (nome, quantidade, valor, ordem_servico_id) 
+INSERT INTO material (nome, quantidade, valor, ordem_de_servico_id) 
 VALUES ('Motor universal 1/4HP', '2', 376.77, 1),
 ('Placa eletrônica modelo X100', '3', 351.50, 2),
 ('Mangueira de drenagem reforçada', '3', 614.16, 3),
