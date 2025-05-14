@@ -30,6 +30,7 @@ func NewOrdemDeServicoHandler(s service.OrdemDeServicoService) *OrdemDeServicoHa
 func (h *OrdemDeServicoHandler) GetAllOrdens(c *gin.Context) {
 	ordens, err := h.service.GetAllOrdens()
 	if err != nil {
+		c.Header("Content-Type", "application/json; charset=utf-8")
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erro ao buscar ordens de serviço"})
 		return
 	}

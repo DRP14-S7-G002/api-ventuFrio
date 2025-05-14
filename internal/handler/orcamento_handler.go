@@ -31,6 +31,7 @@ func NewOrcamentoHandler(s service.OrcamentoService) *OrcamentoHandler {
 func (h *OrcamentoHandler) GetAllOrcamentos(c *gin.Context) {
 	orcamentos, err := h.service.GetAllOrcamentos()
 	if err != nil {
+		c.Header("Content-Type", "application/json; charset=utf-8")
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erro ao buscar orçamentos"})
 		return
 	}

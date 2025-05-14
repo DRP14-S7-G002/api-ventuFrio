@@ -30,6 +30,7 @@ func NewAgendamentoHandler(s service.AgendamentoService) *AgendamentoHandler {
 func (h *AgendamentoHandler) GetAllAgendamentos(c *gin.Context) {
 	agendamentos, err := h.service.GetAllAgendamentos()
 	if err != nil {
+		c.Header("Content-Type", "application/json; charset=utf-8")
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erro ao buscar agendamentos"})
 		return
 	}

@@ -30,6 +30,7 @@ func NewClienteHandler(s service.ClienteService) *ClienteHandler {
 func (h *ClienteHandler) GetAllClientes(c *gin.Context) {
 	clientes, err := h.service.GetAllClientes()
 	if err != nil {
+		c.Header("Content-Type", "application/json; charset=utf-8")
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erro ao buscar clientes"})
 		return
 	}

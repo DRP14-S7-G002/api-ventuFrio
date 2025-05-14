@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS apiVentuFrio;
-CREATE DATABASE apiVentuFrio;
+CREATE DATABASE apiVentuFrio CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE apiVentuFrio;
 
 CREATE TABLE cliente (
@@ -14,7 +14,7 @@ CREATE TABLE cliente (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     log_delete VARCHAR(300)
-);
+)CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 CREATE TABLE agendamento (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -61,6 +61,8 @@ CREATE TABLE material (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (ordem_de_servico_id) REFERENCES ordem_servico(id) ON DELETE CASCADE
 );
+
+SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 -- Inclusão de dados de exemplo na tabela cliente

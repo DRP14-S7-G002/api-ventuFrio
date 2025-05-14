@@ -30,6 +30,7 @@ func NewMaterialHandler(s service.MaterialService) *MaterialHandler {
 func (h *MaterialHandler) GetAllMateriais(c *gin.Context) {
 	materiais, err := h.service.GetAllMateriais()
 	if err != nil {
+		c.Header("Content-Type", "application/json; charset=utf-8")
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erro ao buscar materiais"})
 		return
 	}
